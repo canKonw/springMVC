@@ -15,10 +15,29 @@
     http://www.springframework.org/schema/aop
       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
+    <!-- 启用spring mvc 注解 -->
+    <context:annotation-config />
+    <!-- 扫描controller（controller层注入） -->
+    <context:component-scan base-package="com.hh">
+        <!-- <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>  扫描的时候可以过滤掉controller层-->
+    </context:component-scan>
     <!--使用aop切面方法 对对象进行切面操作-->
     <aop:aspectj-autoproxy />
-    <!-- 扫描controller（controller层注入） -->
-    <context:component-scan base-package="com.hh"/>
+
+
+    <!-- 对模型视图添加前后缀 -->
+    <bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:order="1"
+          p:contentType="text/html"
+          p:prefix="/WEB-INF/page/"
+          p:suffix=".jsp"/>
+    <!--等同于以下配置-->
+    <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="contentType" value="text/html"></property>
+        <property name="prefix" value="/WEB-INF/jsp"></property>
+        <property name="suffix" value=".jsp"></property>
+     </bean>-->
+
     <!-- 避免IE在ajax请求时，返回json出现下载 -->
     <bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
         <property name="supportedMediaTypes">
@@ -27,9 +46,4 @@
             </list>
         </property>
     </bean>
-
-    <!-- 对模型视图添加前后缀 -->
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-          p:prefix="/WEB-INF/jsp/"
-          p:suffix=".jsp"/>
 </beans>
