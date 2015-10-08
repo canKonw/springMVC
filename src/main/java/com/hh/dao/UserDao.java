@@ -14,4 +14,8 @@ public class UserDao  extends  BaseDao{
     public List<User> getallUser(){
         return this.getList("UserMapper.getAllUser",null);
     }
+
+    public User getUserById(int id){
+        return (User)this.selectOne("UserMapper.getUserById",id);
+    }
 }

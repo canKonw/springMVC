@@ -41,4 +41,8 @@ public class BaseDao {
     public List getList(String statementId, Object parameter){
         return sqlSessionTemplate.selectList(statementId,parameter);
     }
+
+    public Object selectOne(String statementId, Object parameter){
+        return sqlSessionTemplate.selectOne(statementId,parameter);
+    }
 }

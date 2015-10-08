@@ -17,4 +17,7 @@
          #{nickname})
          </insert>
 
+    <select id="getUserById" parameterType="java.lang.Integer" resultType="com.hh.entity.User">
+        select * from user where id = #{id}
+    </select>
 </mapper>

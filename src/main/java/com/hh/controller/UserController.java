@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -27,5 +29,16 @@ public class UserController {
             log.error("---:"+user.toString());
         }
         return  new ModelAndView("success");
+    }
+
+    public void getUserById(HttpServletRequest request,HttpServletResponse response){
+        String id = request.getParameter("id");
+        User user = userService.getUserById(Integer.valueOf(id));
+        log.error("----:"+user.toString());
+    }
+
+    public void getUserById(int id){
+        User user = userService.getUserById(id);
+        log.error("----:"+user.toString());
     }
 }
