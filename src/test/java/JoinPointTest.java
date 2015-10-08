@@ -42,5 +42,7 @@ public class JoinPointTest {
         userController.getUserById(request,response);
         logger.error("--------调用方法二");
         userController.getUserById(1);
+        logger.error("--------调用方法三");
+        userController.getUserById(1,"haha");
     }
 }

@@ -41,4 +41,9 @@ public class UserController {
         User user = userService.getUserById(id);
         log.error("----:"+user.toString());
     }
+
+    public void getUserById(int id,String str){
+        log.error("----id:"+id);
+        log.error("----str:"+str);
+    }
 }
